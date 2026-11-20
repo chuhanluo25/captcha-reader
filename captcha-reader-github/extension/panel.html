@@ -1,0 +1,10 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>验证码识别助手</title><link rel="stylesheet" href="panel.css"></head><body>
+<header><span class="badge">本机离线识别</span><h1>验证码识别助手</h1><p>框选图片，识别后核对并填写。</p></header>
+<main><button id="select" class="primary">① 框选网页验证码</button><p class="tip">首次使用请在 Chrome 弹窗中允许访问当前网站。只框住验证码图片，尽量避开外边框、标签和输入框。按 Esc 可取消。</p>
+<label class="upload">或选择验证码图片<input id="file" type="file" accept="image/png,image/jpeg,image/webp,image/bmp"></label>
+<section><div class="label">图片预览</div><button type="button" id="zoom" aria-pressed="false" hidden>放大原图</button><div class="preview" id="imageArea"><img id="preview" alt="选中的验证码" hidden><span id="empty">尚未选择图片</span></div>
+<label for="engine">识别模式</label><select id="engine"><option value="whole">整图识别</option><option value="aspect">单字符实验 · CNN＋宽高比</option><option value="holes">单字符实验 · 加入内孔特征</option></select><p id="glyphHint" class="tip" hidden>请只框选一个浅底深色字符。支持数字和大写字母。内孔特征可能改变 0/O 的判断，请核对候选。切回整图模式可识别完整图片。</p><label for="charset">字符范围</label><select id="charset"><option value="upper">大写字母＋数字（适合示例）</option><option value="latin">大小写字母＋数字</option><option value="digits">纯数字</option><option value="all">不限</option></select>
+<button id="retry" disabled>重新识别</button><p id="status" role="status">准备就绪。模型已随插件打包，无需联网。</p></section>
+<section><label for="result">识别结果 · 可以手动修改</label><input id="result" type="text" spellcheck="false" autocomplete="off" placeholder="等待识别"><div id="review" hidden><p class="tip">对照原图，点击可替换对应位置的字符。</p><div id="choices"></div><button id="undoCorrection" type="button" hidden>撤销上次替换</button></div><div class="row"><button id="copy" disabled>复制结果</button><button id="fill" disabled class="primary">② 点选输入框填写</button></div></section>
+<p class="tip">首次识别需要加载模型。彩色干扰线、重叠和旋转字符可能识别错误，请核对后使用。不会自动点击登录。</p><p class="tip">无法在 Chrome 设置页运行。内嵌框架中的输入框可复制后手动粘贴。</p></main>
+<script src="vendor/ort.min.js"></script><script src="ocr.js"></script><script src="glyph.js"></script><script src="panel.js"></script></body></html>
